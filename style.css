@@ -1,0 +1,1092 @@
+/* ==================================================
+   RESET
+================================================== */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+
+:root {
+    --pink: #E89AB8;
+    --pink-dark: #D978A4;
+    --pink-soft: #FFF4F8;
+    --pink-border: #F0D4E0;
+
+    --text: #6B4E5C;
+    --muted: #9B7284;
+
+    --white: #FFFFFF;
+}
+
+
+/* ==================================================
+   GLOBAL FONT
+================================================== */
+
+html,
+body,
+button,
+input,
+textarea,
+select,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+span,
+div {
+    font-family: "Mitr", sans-serif;
+}
+
+
+body {
+    min-height: 100vh;
+
+    color: var(--text);
+    background: #FFF7FA;
+
+    overflow: hidden;
+}
+
+
+button {
+    border: none;
+    outline: none;
+    cursor: pointer;
+}
+
+
+.hidden {
+    display: none !important;
+}
+
+
+/* ==================================================
+   PAGE 1 — DOOR
+   โครงเดิม ไม่เปลี่ยน layout
+================================================== */
+
+.center,
+#mainContent {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    height: 100vh;
+}
+
+
+.title {
+    margin-bottom: 40px;
+
+    color: var(--pink-dark);
+
+    font-size: 48px;
+    font-weight: 500;
+
+    line-height: 1.25;
+    text-align: center;
+}
+
+
+.door-frame {
+    padding: 18px;
+
+    background: #F6D7E4;
+
+    border-radius: 40px;
+
+    box-shadow:
+        0 10px 30px rgba(0, 0, 0, 0.08);
+}
+
+
+#door {
+    position: relative;
+
+    width: 200px;
+    height: 310px;
+
+    background:
+        linear-gradient(
+            180deg,
+            #F7BDD3,
+            #EEAFC6
+        );
+
+    border-radius: 110px 110px 18px 18px;
+
+    cursor: pointer;
+
+    transition: transform 1s ease;
+
+    box-shadow:
+        inset 0 0 0 4px rgba(255, 255, 255, 0.35),
+        0 10px 30px rgba(0, 0, 0, 0.1);
+}
+
+
+#door.open {
+    transform: rotateY(-75deg);
+    transform-origin: left center;
+}
+
+
+.door-window {
+    position: absolute;
+
+    top: 45px;
+    left: 50%;
+
+    width: 75px;
+    height: 95px;
+
+    background: #FFF4F8;
+
+    border-radius: 35px;
+
+    transform: translateX(-50%);
+}
+
+
+.door-line {
+    position: absolute;
+
+    left: 20px;
+    right: 20px;
+
+    height: 2px;
+
+    background: rgba(255, 255, 255, 0.25);
+}
+
+
+.line1 {
+    top: 155px;
+}
+
+
+.line2 {
+    top: 190px;
+}
+
+
+.line3 {
+    top: 225px;
+}
+
+
+.knob {
+    position: absolute;
+
+    top: 165px;
+    right: 22px;
+
+    width: 18px;
+    height: 18px;
+
+    background: white;
+
+    border-radius: 50%;
+
+    box-shadow:
+        0 0 12px rgba(255, 255, 255, 0.9);
+}
+
+
+@keyframes knockShake {
+
+    0% {
+        transform: translateX(0);
+    }
+
+    20% {
+        transform: translateX(-4px);
+    }
+
+    40% {
+        transform: translateX(4px);
+    }
+
+    60% {
+        transform: translateX(-3px);
+    }
+
+    80% {
+        transform: translateX(3px);
+    }
+
+    100% {
+        transform: translateX(0);
+    }
+}
+
+
+#door.knock {
+    animation: knockShake 0.35s ease;
+}
+
+
+.hint {
+    margin-top: 30px;
+
+    color: var(--muted);
+
+    font-size: 18px;
+    font-weight: 300;
+}
+
+
+/* ==================================================
+   PAGE 2 — MESSAGE
+================================================== */
+
+#mainContent {
+    padding: 20px;
+}
+
+
+.card {
+    width: min(760px, 92vw);
+
+    padding: 30px;
+
+    background: white;
+
+    border-radius: 35px;
+
+    box-shadow:
+        0 10px 35px rgba(0, 0, 0, 0.08);
+
+    text-align: center;
+}
+
+
+.beg-image {
+    display: block;
+
+    width: 320px;
+    max-width: 85vw;
+
+    margin: 0 auto;
+
+    border-radius: 25px;
+
+    filter:
+        drop-shadow(
+            0 10px 25px rgba(232, 154, 184, 0.35)
+        );
+
+    animation:
+        floatImage 3s ease-in-out infinite;
+}
+
+
+@keyframes floatImage {
+
+    0% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(-10px);
+    }
+
+    100% {
+        transform: translateY(0);
+    }
+}
+
+
+/* ==================================================
+   TYPING MESSAGE
+================================================== */
+
+.question {
+    min-height: 245px;
+
+    margin-top: 20px;
+    margin-bottom: 20px;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    color: var(--pink-dark);
+
+    font-size: 30px;
+    font-weight: 500;
+
+    line-height: 1.55;
+
+    text-align: center;
+}
+
+
+.typed-line {
+    min-height: 1.55em;
+
+    white-space: nowrap;
+}
+
+
+.typing-cursor {
+    display: inline-block;
+
+    width: 2px;
+    height: 0.85em;
+
+    margin-left: 4px;
+
+    vertical-align: -0.03em;
+
+    border-radius: 2px;
+
+    background: currentColor;
+
+    animation:
+        cursorBlink 0.75s steps(1) infinite;
+}
+
+
+@keyframes cursorBlink {
+
+    50% {
+        opacity: 0;
+    }
+}
+
+
+/* ==================================================
+   MESSAGE BUTTONS
+================================================== */
+
+.buttons {
+    position: relative;
+
+    min-height: 100px;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    gap: 10px;
+}
+
+
+.buttons-hidden {
+    opacity: 0;
+
+    transform: translateY(8px);
+
+    pointer-events: none;
+
+    transition:
+        opacity 0.7s ease,
+        transform 0.7s ease;
+}
+
+
+.buttons-show {
+    opacity: 1;
+
+    transform: translateY(0);
+
+    pointer-events: auto;
+}
+
+
+.buttons button {
+    width: 230px;
+
+    padding: 14px 28px;
+
+    border-radius: 999px;
+
+    font-size: 17px;
+    font-weight: 400;
+}
+
+
+#yesBtn {
+    color: white;
+
+    background: var(--pink);
+
+    box-shadow:
+        0 8px 20px rgba(232, 154, 184, 0.25);
+
+    transition:
+        transform 0.2s ease,
+        box-shadow 0.2s ease;
+}
+
+
+#yesBtn:hover {
+    transform: translateY(-1px);
+    box-shadow:
+        0 10px 24px rgba(232, 154, 184, 0.30);
+}
+
+
+/*
+ * ปุ่มไม่อยากฟัง:
+ * ตอนแรกเป็นปุ่มธรรมดาใน flow
+ * พอกดครั้งแรก JS จะใส่ .is-running
+ * แล้วล็อกตำแหน่งเดิมก่อนจึงค่อยเลื่อน
+ */
+
+#noBtn {
+    position: relative;
+
+    color: var(--pink);
+    background: #FFFFFF;
+
+    border: 2px solid var(--pink);
+    border-radius: 999px;
+
+    /*
+     * ปุ่มจะวิ่งด้วย transform
+     * ไม่เปลี่ยน position
+     * จึงไม่หายหรือกระโดด
+     */
+    transition:
+        transform 0.65s cubic-bezier(.22, 1, .36, 1),
+        box-shadow 0.2s ease;
+
+    will-change: transform;
+}
+
+
+#noBtn:hover {
+    box-shadow:
+        0 6px 18px rgba(232, 154, 184, 0.15);
+}
+
+
+#noBtn.is-running {
+    position: relative;
+
+    z-index: 1000;
+
+    /*
+     * ไม่ต้องใส่ left
+     * ไม่ต้องใส่ top
+     * ไม่ต้องใช้ fixed
+     */
+}
+
+/* ==================================================
+   PAGE 3 — MUSIC WIDGET
+   OPTION 2
+================================================== */
+
+#musicPage {
+    width: 100%;
+    min-height: 100vh;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    padding: 20px;
+}
+
+
+.music-widget {
+    width: min(900px, 94vw);
+
+    display: grid;
+    grid-template-columns: 190px minmax(0, 1fr);
+
+    gap: 28px;
+
+    padding: 28px;
+
+    background: white;
+
+    border: 1px solid var(--pink-border);
+
+    border-radius: 28px;
+
+    box-shadow:
+        0 20px 55px rgba(192, 127, 153, 0.13);
+}
+
+
+.music-cover {
+    width: 190px;
+    height: 190px;
+
+    overflow: hidden;
+
+    border-radius: 21px;
+
+    box-shadow:
+        0 12px 28px rgba(50, 35, 40, 0.12);
+}
+
+
+.music-cover img {
+    display: block;
+
+    width: 100%;
+    height: 100%;
+
+    object-fit: cover;
+}
+
+
+.music-main {
+    min-width: 0;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+
+.music-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+
+    gap: 18px;
+}
+
+
+.music-label {
+    margin-bottom: 6px;
+
+    color: var(--pink-dark);
+
+    font-size: 11px;
+    font-weight: 500;
+
+    letter-spacing: 2px;
+}
+
+
+.music-title {
+    color: #4D3B44;
+
+    font-size: 32px;
+    font-weight: 500;
+
+    line-height: 1.2;
+}
+
+
+.music-artist {
+    margin-top: 5px;
+
+    color: var(--muted);
+
+    font-size: 17px;
+    font-weight: 300;
+}
+
+
+/* ==================================================
+   MUSIC ICONS
+================================================== */
+
+.icon-button {
+    width: 36px;
+    height: 36px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    padding: 7px;
+
+    color: #624F58;
+
+    background: transparent;
+
+    border: none;
+
+    border-radius: 50%;
+
+    cursor: pointer;
+
+    flex-shrink: 0;
+
+    transition:
+        color 0.2s ease,
+        transform 0.2s ease;
+}
+
+
+/*
+ * ขนาดไอคอนทุกปุ่มเท่ากัน
+ */
+.icon-button svg {
+    width: 20px;
+    height: 20px;
+
+    display: block;
+
+    fill: none;
+
+    stroke: currentColor;
+
+    stroke-width: 1.75;
+
+    stroke-linecap: round;
+    stroke-linejoin: round;
+}
+
+
+.icon-button:hover {
+    color: var(--pink-dark);
+
+    transform:
+        scale(1.04);
+}
+
+
+.icon-button.active {
+    color: var(--pink-dark);
+}
+
+
+#likeBtn.is-liked svg {
+    fill: currentColor;
+}
+
+
+/* ==================================================
+   PROGRESS
+================================================== */
+
+.progress-area {
+    margin-top: 27px;
+}
+
+
+#progressBar {
+    display: block;
+
+    width: 100%;
+    height: 5px;
+
+    appearance: none;
+
+    background: #EADFE4;
+
+    border-radius: 999px;
+
+    cursor: pointer;
+}
+
+
+#progressBar::-webkit-slider-thumb {
+    appearance: none;
+
+    width: 14px;
+    height: 14px;
+
+    border: none;
+    border-radius: 50%;
+
+    background: var(--pink);
+
+    box-shadow:
+        0 3px 9px rgba(230, 149, 182, 0.35);
+}
+
+
+#progressBar::-moz-range-thumb {
+    width: 14px;
+    height: 14px;
+
+    border: none;
+    border-radius: 50%;
+
+    background: var(--pink);
+}
+
+
+.time-row {
+    display: flex;
+    justify-content: space-between;
+
+    margin-top: 7px;
+
+    color: var(--muted);
+
+    font-size: 12px;
+    font-weight: 300;
+}
+
+
+/* ==================================================
+   PLAYER CONTROLS
+================================================== */
+
+.player-controls {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    gap: 13px;
+
+    margin-top: 17px;
+}
+
+
+.control {
+    width: 34px;
+    height: 34px;
+
+    padding: 6px;
+}
+
+
+
+
+.play-control {
+    width: 60px;
+    height: 60px;
+
+    display: grid;
+    place-items: center;
+
+    padding: 0;
+
+    color: white;
+
+    background: var(--pink);
+
+    border-radius: 50%;
+
+    box-shadow:
+        0 10px 24px rgba(230, 149, 182, 0.34);
+
+    cursor: pointer;
+
+    transition:
+        transform 0.18s ease,
+        box-shadow 0.18s ease;
+}
+
+
+.play-control:hover {
+    transform: scale(1.045);
+
+    box-shadow:
+        0 12px 28px rgba(230, 149, 182, 0.40);
+}
+
+
+.play-control svg {
+    width: 25px;
+    height: 25px;
+
+    fill: currentColor;
+}
+
+
+/* ==================================================
+   MUSIC NOTE
+================================================== */
+
+.music-note {
+    margin-top: 17px;
+    padding: 11px 14px;
+
+    display: flex;
+    align-items: center;
+
+    gap: 10px;
+
+    color: #80636E;
+
+    background: var(--pink-soft);
+
+    border-radius: 13px;
+}
+
+
+.music-note svg {
+    width: 20px;
+    height: 20px;
+
+    flex: 0 0 auto;
+
+    fill: none;
+
+    stroke: var(--pink);
+
+    stroke-width: 1.7;
+
+    stroke-linecap: round;
+    stroke-linejoin: round;
+}
+
+
+.music-note p {
+    font-size: 13px;
+    font-weight: 300;
+
+    line-height: 1.55;
+}
+
+
+/* ==================================================
+   VOLUME BUTTON
+================================================== */
+
+.music-toggle {
+    position: fixed;
+
+    top: 20px;
+    right: 20px;
+
+    z-index: 9999;
+
+    width: 46px;
+    height: 46px;
+
+    display: grid;
+    place-items: center;
+
+    padding: 10px;
+
+    color: var(--text);
+
+    background: rgba(255, 255, 255, 0.92);
+
+    border-radius: 50%;
+
+    box-shadow:
+        0 8px 24px rgba(110, 70, 85, 0.08);
+
+    cursor: pointer;
+
+    transition:
+        transform 0.2s ease,
+        box-shadow 0.2s ease;
+}
+
+
+.music-toggle:hover {
+    transform: scale(1.04);
+}
+
+
+.music-toggle svg {
+    width: 22px;
+    height: 22px;
+
+    fill: none;
+
+    stroke: currentColor;
+    stroke-width: 1.7;
+
+    stroke-linecap: round;
+    stroke-linejoin: round;
+}
+
+
+/* ==================================================
+   MOBILE
+================================================== */
+
+@media (max-width: 720px) {
+
+    .title {
+        font-size: 36px;
+    }
+
+
+    .hint {
+        font-size: 16px;
+    }
+
+
+    .card {
+        padding: 24px 18px 28px;
+    }
+
+
+    .beg-image {
+        width: min(300px, 78vw);
+    }
+
+
+    .question {
+        min-height: 225px;
+
+        font-size: 22px;
+
+        line-height: 1.6;
+    }
+
+
+    .buttons button {
+        width: 215px;
+
+        font-size: 16px;
+    }
+
+
+    .music-widget {
+        grid-template-columns: 1fr;
+
+        gap: 20px;
+
+        padding: 20px;
+    }
+
+
+    .music-cover {
+        width: 150px;
+        height: 150px;
+
+        margin: 0 auto;
+    }
+
+
+    .music-title {
+        font-size: 27px;
+    }
+
+
+    .player-controls {
+        gap: 5px;
+    }
+
+
+    .play-control {
+        width: 56px;
+        height: 56px;
+    }
+
+
+    .music-toggle {
+        top: 14px;
+        right: 14px;
+
+        width: 42px;
+        height: 42px;
+    }
+
+}
+
+/* ==================================================
+   OPENING HEART + FLOWER BURST
+   เอฟเฟกต์เฉพาะตอนเปิดรูป
+================================================== */
+
+#celebration {
+    position: fixed;
+
+    inset: 0;
+
+    z-index: 9999;
+
+    pointer-events: none;
+
+    overflow: hidden;
+}
+
+
+/*
+ * Particle แต่ละตัว
+ */
+.heart-burst {
+    position: fixed;
+
+    display: block;
+
+    line-height: 1;
+
+    font-family:
+        "Apple Color Emoji",
+        "Segoe UI Emoji",
+        "Noto Color Emoji",
+        sans-serif;
+
+    opacity: 0;
+
+    transform:
+        translate(-50%, -50%)
+        scale(0.25);
+
+    filter:
+        drop-shadow(
+            0 3px 6px
+            rgba(220, 130, 165, 0.18)
+        );
+
+    animation:
+        heartFlowerBurst
+        0.95s
+        cubic-bezier(.18, .78, .25, 1)
+        forwards;
+
+    will-change:
+        transform,
+        opacity;
+}
+
+
+/*
+ * เอฟเฟกต์พุ่งออกจากรูป
+ */
+@keyframes heartFlowerBurst {
+
+    0% {
+
+        opacity: 0;
+
+        transform:
+            translate(-50%, -50%)
+            scale(0.25)
+            rotate(0deg);
+    }
+
+
+    12% {
+
+        opacity: 1;
+
+        transform:
+            translate(-50%, -50%)
+            scale(0.8)
+            rotate(0deg);
+    }
+
+
+    65% {
+
+        opacity: 1;
+
+    }
+
+
+    100% {
+
+        opacity: 0;
+
+        transform:
+            translate(
+                calc(-50% + var(--x)),
+                calc(-50% + var(--y))
+            )
+            scale(1)
+            rotate(var(--rotate));
+    }
+
+}

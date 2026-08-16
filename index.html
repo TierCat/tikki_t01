@@ -1,0 +1,624 @@
+<!DOCTYPE html>
+<html lang="th">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>Knock Knock</title>
+
+
+    <!-- ==================================================
+         Open Graph
+    =================================================== -->
+
+    <meta
+        property="og:type"
+        content="website"
+    >
+
+    <meta
+        property="og:title"
+        content="ก็อกๆ !! มีอะไรจะบอก"
+    >
+
+    <meta
+        property="og:description"
+        content="มีบางอย่างอยากให้เปิดดูด้วยตัวเอง"
+    >
+
+    <meta
+        property="og:image"
+        content="cover.jpg"
+    >
+
+
+    <!-- ==================================================
+         Google Font
+    =================================================== -->
+
+    <link
+        rel="preconnect"
+        href="https://fonts.googleapis.com"
+    >
+
+    <link
+        rel="preconnect"
+        href="https://fonts.gstatic.com"
+        crossorigin
+    >
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Mitr:wght@300;400;500&display=swap"
+        rel="stylesheet"
+    >
+
+
+    <!-- ==================================================
+         Main CSS
+    =================================================== -->
+
+    <link
+        rel="stylesheet"
+        href="style.css"
+    >
+
+</head>
+
+
+<body>
+
+
+    <!-- ==================================================
+         หน้าแรก
+    =================================================== -->
+
+    <div
+        id="doorScene"
+        class="center"
+    >
+
+        <h1 class="title">
+            ก็อกๆ !! มีอะไรจะบอก
+        </h1>
+
+
+        <div class="door-frame">
+
+            <div id="door">
+
+                <div class="door-window"></div>
+
+                <div class="door-line line1"></div>
+                <div class="door-line line2"></div>
+                <div class="door-line line3"></div>
+
+                <div class="knob"></div>
+
+            </div>
+
+        </div>
+
+
+        <p class="hint">
+            เคาะประตูสองครั้งเพื่อเข้าไปข้างใน !!
+        </p>
+
+    </div>
+
+
+    <!-- ==================================================
+         หน้าข้อความ
+    =================================================== -->
+
+    <div
+        id="mainContent"
+        class="hidden"
+    >
+
+        <div class="card">
+
+            <img
+                src="1.jpg"
+                class="beg-image"
+                alt=""
+            >
+
+
+            <div
+                id="typedMessage"
+                class="question"
+            >
+
+                <div class="typed-line"></div>
+
+                <div class="typed-line"></div>
+
+                <div class="typed-line"></div>
+
+                <div class="typed-line"></div>
+
+                <div class="typed-line"></div>
+
+            </div>
+
+
+            <div
+                id="messageButtons"
+                class="buttons buttons-hidden"
+            >
+
+                <button
+                    id="yesBtn"
+                    type="button"
+                >
+                    มีเพลงนึงอยากให้ฟัง กดๆ
+                </button>
+
+
+                <button
+                    id="noBtn"
+                    type="button"
+                >
+                    ไม่อยากฟัง
+                </button>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- ==================================================
+         หน้าวิดเจ็ตเพลง
+         Option 2
+    =================================================== -->
+
+    <div
+        id="musicPage"
+        class="hidden"
+    >
+
+        <div class="music-widget">
+
+
+            <!-- ==================================================
+                 รูปปก
+            =================================================== -->
+
+            <div class="music-cover">
+
+                <img
+                    src="1.jpg"
+                    alt=""
+                >
+
+            </div>
+
+
+            <div class="music-main">
+
+
+                <!-- ==================================================
+                     Header
+                =================================================== -->
+
+                <div class="music-header">
+
+                    <div>
+
+                        <div class="music-label">
+                            NOW PLAYING
+                        </div>
+
+                        <div class="music-title">
+                            Happiest Girl
+                        </div>
+
+                        <div class="music-artist">
+                            Stephen Dawes
+                        </div>
+
+                    </div>
+
+
+                    <!-- Like -->
+
+                    <button
+                        id="likeBtn"
+                        class="icon-button"
+                        type="button"
+                        aria-label="ถูกใจ"
+                    >
+
+                        <svg
+                            viewBox="0 0 24 24"
+                            aria-hidden="true"
+                        >
+
+                            <path
+                                d="M20.8 8.7c0 5.4-8.8 10.3-8.8 10.3S3.2 14.1 3.2 8.7C3.2 6 5.2 4 7.7 4c1.5 0 2.9.8 4.3 2.1C13.4 4.8 14.8 4 16.3 4c2.5 0 4.5 2 4.5 4.7Z"
+                            ></path>
+
+                        </svg>
+
+                    </button>
+
+                </div>
+
+
+                <!-- ==================================================
+                     Progress
+                =================================================== -->
+
+                <div class="progress-area">
+
+                    <input
+                        id="progressBar"
+                        type="range"
+                        min="0"
+                        max="100"
+                        value="0"
+                        aria-label="ตำแหน่งเพลง"
+                    >
+
+
+                    <div class="time-row">
+
+                        <span id="currentTime">
+                            0:00
+                        </span>
+
+                        <span id="duration">
+                            0:00
+                        </span>
+
+                    </div>
+
+                </div>
+
+
+                <!-- ==================================================
+                     Player Controls
+
+                     Shuffle
+                     Previous
+                     Back
+                     Play
+                     Forward
+                     Next
+                     Repeat
+                =================================================== -->
+
+                <div class="player-controls">
+
+
+                    <!-- Shuffle -->
+
+                    <button
+                        id="shuffleBtn"
+                        class="icon-button control"
+                        type="button"
+                        aria-label="สุ่มเพลง"
+                    >
+
+                       <svg 
+    xmlns="http://www.w3.org/2000/svg" 
+    viewBox="0 0 24 24" 
+    width="24" 
+    height="24" 
+    fill="none" 
+    stroke="currentColor" 
+    stroke-width="2" 
+    stroke-linecap="round" 
+    stroke-linejoin="round"
+>
+    <!-- เส้นไขว้จากบนไปล่าง -->
+    <path d="M2 18h1.4c1.3 0 2.5-.6 3.3-1.7l6.6-8.6c.8-1.1 2-1.7 3.3-1.7H22"></path>
+    <!-- เส้นไขว้จากล่างไปบน -->
+    <path d="M2 6h1.4c1.3 0 2.5.6 3.3 1.7l6.6 8.6c.8 1.1 2 1.7 3.3 1.7H22"></path>
+    <!-- หัวลูกศรบน -->
+    <path d="m18 2 4 4-4 4"></path>
+    <!-- หัวลูกศรล่าง -->
+    <path d="m18 14 4 4-4 4"></path>
+</svg>
+
+
+                    </button>
+
+
+                    <!-- Previous -->
+
+                    <button
+                        id="prevBtn"
+                        class="icon-button control"
+                        type="button"
+                        aria-label="เพลงก่อนหน้า"
+                    >
+
+                        <svg
+                            viewBox="0 0 24 24"
+                            aria-hidden="true"
+                        >
+
+                            <path
+                                d="M6 5v14"
+                            ></path>
+
+                            <path
+                                d="M18 5l-9 7 9 7z"
+                            ></path>
+
+                        </svg>
+
+                    </button>
+
+
+                    <!-- Back -->
+
+                    <!-- Back 10 seconds -->
+
+<!--<button
+    id="backBtn"
+    class="icon-button control"
+    type="button"
+    aria-label="ย้อนกลับ 10 วินาที"
+>
+    <svg
+        viewBox="0 0 24 24"
+        aria-hidden="true"
+    >
+        <path d="M9 8H5"></path>
+        <path d="M5 8l3-3"></path>
+        <path d="M5 8l3 3"></path>
+
+        <path
+            d="M6 8a7 7 0 1 1 2 7"
+        ></path>
+    </svg>
+</button>-->
+
+
+                    <!-- Play / Pause -->
+
+                    <button
+                        id="playBtn"
+                        class="play-control"
+                        type="button"
+                        aria-label="เล่นเพลง"
+                    >
+
+                        <svg
+                            id="playIcon"
+                            viewBox="0 0 24 24"
+                            aria-hidden="true"
+                        >
+
+                            <path
+                                d="M8 5v14l11-7Z"
+                            ></path>
+
+                        </svg>
+
+                    </button>
+
+
+                    <!-- Forward -->
+
+                   <!-- Forward 10 seconds -->
+
+<!--<button
+    id="forwardBtn"
+    class="icon-button control"
+    type="button"
+    aria-label="ไปข้างหน้า 10 วินาที"
+>
+    <svg
+        viewBox="0 0 24 24"
+        aria-hidden="true"
+    >
+        <path d="M15 8h4"></path>
+        <path d="M19 8l-3-3"></path>
+        <path d="M19 8l-3 3"></path>
+
+        <path
+            d="M18 8a7 7 0 1 0-2 7"
+        ></path>
+    </svg>
+</button>-->
+
+
+                    <!-- Next -->
+
+                    <button
+                        id="nextBtn"
+                        class="icon-button control"
+                        type="button"
+                        aria-label="เพลงถัดไป"
+                    >
+
+                        <svg
+                            viewBox="0 0 24 24"
+                            aria-hidden="true"
+                        >
+
+                            <path
+                                d="M18 5v14"
+                            ></path>
+
+                            <path
+                                d="M6 5l9 7-9 7z"
+                            ></path>
+
+                        </svg>
+
+                    </button>
+
+
+                    <!-- Repeat -->
+
+                    <button
+                        id="repeatBtn"
+                        class="icon-button control"
+                        type="button"
+                        aria-label="เล่นซ้ำ"
+                    >
+
+                        <svg
+                            viewBox="0 0 24 24"
+                            aria-hidden="true"
+                        >
+
+                            <path
+                                d="M17 2l4 4-4 4"
+                            ></path>
+
+                            <path
+                                d="M3 11V9a3 3 0 0 1 3-3h15"
+                            ></path>
+
+                            <path
+                                d="M7 22l-4-4 4-4"
+                            ></path>
+
+                            <path
+                                d="M21 13v2a3 3 0 0 1-3 3H3"
+                            ></path>
+
+                        </svg>
+
+                    </button>
+
+
+                </div>
+
+
+                <!-- ==================================================
+                     Message
+                =================================================== -->
+
+                <div class="music-note">
+
+                    <svg
+                        viewBox="0 0 24 24"
+                        aria-hidden="true"
+                    >
+
+                        <path
+                            d="M12 21s-8-4.6-8-10.2C4 7.1 6 5 8.5 5c1.5 0 2.8.8 3.5 2 0.7-1.2 2-2 3.5-2C18 5 20 7.1 20 10.8 20 16.4 12 21 12 21Z"
+                        ></path>
+
+                    </svg>
+
+
+                    <p>
+                        สำหรับผม หนึ่งในความประทับใจที่สุดของปีนี้<br>
+                        คือการที่ได้เจอคุณ
+                    </p>
+
+                </div>
+
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- ==================================================
+         Opening Celebration
+         JS จะสร้าง emoji particle ตรงนี้
+    =================================================== -->
+
+    <div
+        id="celebration"
+        aria-hidden="true"
+    ></div>
+
+
+    <!-- ==================================================
+         เพลงหน้าแรก
+         เริ่มที่ 1:06 จาก JS
+    =================================================== -->
+
+    <audio
+        id="bgMusic"
+        loop
+        preload="auto"
+    >
+
+        <source
+            src="เพลงปก.mp3"
+            type="audio/mpeg"
+        >
+
+    </audio>
+
+
+    <!-- ==================================================
+         เพลงแนบใน Music Widget
+    =================================================== -->
+
+    <audio
+        id="attachedMusic"
+        preload="metadata"
+    >
+
+        <source
+            src="เพลงแนบ.mp3"
+            type="audio/mpeg"
+        >
+
+    </audio>
+
+
+    <!-- ==================================================
+         ปุ่มเสียง
+    =================================================== -->
+
+    <button
+        id="musicToggle"
+        class="music-toggle"
+        type="button"
+        aria-label="เปิดหรือปิดเพลง"
+    >
+
+        <svg
+            id="volumeIcon"
+            viewBox="0 0 24 24"
+            aria-hidden="true"
+        >
+
+            <path
+                d="M4 10v4h4l5 4V6l-5 4H4"
+            ></path>
+
+            <path
+                d="M16 9a4 4 0 0 1 0 6"
+            ></path>
+
+            <path
+                d="M18.5 6.5a7.5 7.5 0 0 1 0 11"
+            ></path>
+
+        </svg>
+
+    </button>
+
+
+    <!-- ==================================================
+         JavaScript
+    =================================================== -->
+
+    <script src="script.js"></script>
+
+</body>
+
+</html>
