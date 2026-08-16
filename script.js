@@ -101,17 +101,11 @@ let noButtonY = 0;
 ================================================== */
 
 const messageText = [
-
     "คุณหน้าเหมือนแมวเลยอะ",
-
     "ดูน่ารัก นุ่มฟู",
-
     "แล้วก็ชวนให้เอ็นดูมากๆ",
-
     "น่ารักจัง",
-
     "ผมว่าผมรักแมว"
-
 ];
 
 
@@ -121,14 +115,16 @@ const messageText = [
 
 function wait(ms) {
 
-    return new Promise((resolve) => {
+    return new Promise(
+        (resolve) => {
 
-        window.setTimeout(
-            resolve,
-            ms
-        );
+            window.setTimeout(
+                resolve,
+                ms
+            );
 
-    });
+        }
+    );
 
 }
 
@@ -165,23 +161,24 @@ function formatTime(seconds) {
 
 
 /* ==================================================
-   HEART + FLOWER BURST
-   พุ่งออกมาพร้อมรูป
+   HEART BURST
 ================================================== */
 
 function playHeartBurst() {
 
-    if (!celebration || !mainContent) {
+    if (
+        !celebration ||
+        !mainContent
+    ) {
+
         return;
+
     }
+
 
     celebration.innerHTML = "";
 
 
-    /*
-     * หา "รูปหลัก" ในหน้าปัจจุบัน
-     * เพื่อให้เอฟเฟกต์พุ่งออกจากบริเวณรูป
-     */
     const image =
         mainContent.querySelector("img");
 
@@ -211,12 +208,6 @@ function playHeartBurst() {
     }
 
 
-    /*
-     * หัวใจ + ดอกไม้ + ประกาย
-     *
-     * จำนวนไม่เยอะ
-     * เพื่อไม่ให้บังข้อความ
-     */
     const effects = [
 
         {
@@ -318,9 +309,6 @@ function playHeartBurst() {
     ];
 
 
-    /*
-     * สร้าง particle
-     */
     effects.forEach(
         (effect, index) => {
 
@@ -368,10 +356,6 @@ function playHeartBurst() {
             );
 
 
-            /*
-             * ให้พุ่งออกเกือบพร้อมกัน
-             * แต่ไม่พร้อมเป๊ะจนดูแข็ง
-             */
             particle.style.animationDelay =
                 `${index * 0.025}s`;
 
@@ -384,9 +368,6 @@ function playHeartBurst() {
     );
 
 
-    /*
-     * ล้างหลัง animation
-     */
     setTimeout(
         () => {
 
@@ -415,9 +396,6 @@ async function typeOneLine(
     }
 
 
-    /*
-     * สร้าง cursor
-     */
     const cursor =
         document.createElement(
             "span"
@@ -433,9 +411,6 @@ async function typeOneLine(
     );
 
 
-    /*
-     * พิมพ์ทีละตัว
-     */
     for (
         let i = 0;
         i < text.length;
@@ -454,12 +429,6 @@ async function typeOneLine(
     }
 
 
-    /*
-     * สำคัญมาก
-     *
-     * พอจบบรรทัด
-     * cursor ของบรรทัดนี้หายทันที
-     */
     cursor.remove();
 
 }
@@ -467,9 +436,6 @@ async function typeOneLine(
 
 async function startTyping() {
 
-    /*
-     * ป้องกัน animation ซ้ำ
-     */
     if (typingStarted) {
 
         return;
@@ -480,15 +446,9 @@ async function startTyping() {
     typingStarted = true;
 
 
-    /*
-     * ให้คนดูรูปก่อน
-     */
     await wait(700);
 
 
-    /*
-     * พิมพ์ทีละบรรทัด
-     */
     for (
         let i = 0;
         i < messageText.length;
@@ -501,9 +461,6 @@ async function startTyping() {
         );
 
 
-        /*
-         * เว้นจังหวะระหว่างบรรทัด
-         */
         if (
             i <
             messageText.length - 1
@@ -516,10 +473,6 @@ async function startTyping() {
     }
 
 
-    /*
-     * ข้อความจบแล้ว
-     * เว้นนิดหนึ่งก่อนให้ปุ่มขึ้น
-     */
     await wait(500);
 
 
@@ -536,7 +489,6 @@ async function startTyping() {
 
 /* ==================================================
    HOME MUSIC
-   เพลงปก.mp3 เริ่มที่ 1:06
 ================================================== */
 
 function startHomeMusic() {
@@ -546,12 +498,6 @@ function startHomeMusic() {
         return;
 
     }
-
-
-    /*
-     * 1:06 = 66 วินาที
-     */
-   
 
 
     bgMusic.volume =
@@ -566,9 +512,6 @@ function startHomeMusic() {
         bgMusic.play();
 
 
-    /*
-     * กัน browser block autoplay
-     */
     if (promise) {
 
         promise.catch(
@@ -590,10 +533,6 @@ if (door) {
         "click",
         async () => {
 
-            /*
-             * ถ้ากำลังเปิดอยู่
-             * ห้ามกดซ้ำ
-             */
             if (doorOpening) {
 
                 return;
@@ -601,9 +540,6 @@ if (door) {
             }
 
 
-            /*
-             * Animation เคาะ
-             */
             door.classList.remove(
                 "knock"
             );
@@ -617,12 +553,9 @@ if (door) {
             );
 
 
-            knocks += 1;
+            knocks++;
 
 
-            /*
-             * ต้องเคาะ 2 ครั้ง
-             */
             if (knocks < 2) {
 
                 return;
@@ -630,9 +563,6 @@ if (door) {
             }
 
 
-            /*
-             * เริ่มเปิดประตู
-             */
             doorOpening =
                 true;
 
@@ -646,29 +576,9 @@ if (door) {
             );
 
 
-            /*
-             * =================================================
-             * สำคัญ
-             *
-             * รอให้ประตูเปิดจนสุดก่อน
-             * ยังไม่ให้รูปหรือพลุขึ้น
-             * =================================================
-             */
             await wait(1000);
 
 
-            /*
-             * =================================================
-             * ตุ้ม!!
-             *
-             * รูป + เอฟเฟกต์พุ่งพร้อมกัน
-             * =================================================
-             */
-
-
-            /*
-             * ซ่อนหน้าแรก
-             */
             if (doorScene) {
 
                 doorScene.classList.add(
@@ -678,9 +588,6 @@ if (door) {
             }
 
 
-            /*
-             * แสดงหน้ารูป
-             */
             if (mainContent) {
 
                 mainContent.classList.remove(
@@ -690,32 +597,15 @@ if (door) {
             }
 
 
-            /*
-             * 💗✨ พุ่งออกมา
-             */
             playHeartBurst();
 
 
-            /*
-             * เพลงเริ่มที่ 1:06
-             */
             startHomeMusic();
 
 
-            /*
-             * =================================================
-             * รอให้เห็นรูป + เอฟเฟกต์
-             * =================================================
-             */
             await wait(950);
 
 
-            /*
-             * =================================================
-             * หลังเอฟเฟกต์จบ
-             * ค่อยเริ่มพิมพ์
-             * =================================================
-             */
             startTyping();
 
         }
@@ -726,17 +616,8 @@ if (door) {
 
 /* ==================================================
    NO BUTTON
-   กดแล้ววิ่งหนีด้วย TRANSFORM
 ================================================== */
 
-
-/*
- * ตำแหน่งที่สามารถวิ่งไปได้
- *
- * ไม่ใช้ fixed
- * ไม่ใช้ left
- * ไม่ใช้ top
- */
 const noButtonMoves = [
 
     {
@@ -794,9 +675,6 @@ function moveNoButton() {
     let move;
 
 
-    /*
-     * สุ่มจนกว่าจะได้ตำแหน่งใหม่
-     */
     do {
 
         move =
@@ -808,16 +686,11 @@ function moveNoButton() {
             ];
 
     } while (
-
         move.x === noButtonX &&
         move.y === noButtonY
-
     );
 
 
-    /*
-     * จำตำแหน่งใหม่
-     */
     noButtonX =
         move.x;
 
@@ -826,19 +699,11 @@ function moveNoButton() {
         move.y;
 
 
-    /*
-     * ใส่ class
-     */
     noBtn.classList.add(
         "is-running"
     );
 
 
-    /*
-     * ให้ CSS transition
-     * ทำหน้าที่วิ่งจากจุดเดิม
-     * ไปจุดใหม่
-     */
     noBtn.style.transform =
         `translate(
             ${noButtonX}px,
@@ -848,9 +713,6 @@ function moveNoButton() {
 }
 
 
-/*
- * Desktop
- */
 if (noBtn) {
 
     noBtn.addEventListener(
@@ -865,9 +727,6 @@ if (noBtn) {
     );
 
 
-    /*
-     * Mobile
-     */
     noBtn.addEventListener(
         "touchstart",
         (event) => {
@@ -887,7 +746,6 @@ if (noBtn) {
 
 /* ==================================================
    YES BUTTON
-   เปิด MUSIC WIDGET
 ================================================== */
 
 if (yesBtn) {
@@ -896,9 +754,6 @@ if (yesBtn) {
         "click",
         () => {
 
-            /*
-             * หยุดเพลงหน้าแรก
-             */
             if (bgMusic) {
 
                 bgMusic.pause();
@@ -906,9 +761,6 @@ if (yesBtn) {
             }
 
 
-            /*
-             * ซ่อนหน้าข้อความ
-             */
             if (mainContent) {
 
                 mainContent.classList.add(
@@ -918,9 +770,6 @@ if (yesBtn) {
             }
 
 
-            /*
-             * เปิด Music Widget
-             */
             if (musicPage) {
 
                 musicPage.classList.remove(
@@ -930,9 +779,6 @@ if (yesBtn) {
             }
 
 
-            /*
-             * เริ่มเพลงแนบ
-             */
             if (attachedMusic) {
 
                 attachedMusic.currentTime =
@@ -1080,6 +926,11 @@ function updateMusicUI() {
     }
 
 
+    /*
+       Progress
+       0 - 100
+    */
+
     if (
         progressBar &&
         Number.isFinite(
@@ -1088,11 +939,21 @@ function updateMusicUI() {
         attachedMusic.duration > 0
     ) {
 
-        progressBar.value =
+        const progress =
             (
                 attachedMusic.currentTime /
                 attachedMusic.duration
             ) * 100;
+
+
+        progressBar.value =
+            progress;
+
+
+        progressBar.style.setProperty(
+            "--progress",
+            `${progress}%`
+        );
 
     }
 
@@ -1167,6 +1028,9 @@ if (progressBar) {
                     ) / 100
                 ) *
                 attachedMusic.duration;
+
+
+            updateMusicUI();
 
         }
     );
@@ -1404,9 +1268,6 @@ if (musicToggle) {
             }
 
 
-            /*
-             * Mute icon
-             */
             if (shouldMute) {
 
                 musicToggle.innerHTML = `
@@ -1420,13 +1281,7 @@ if (musicToggle) {
                     </svg>
                 `;
 
-            }
-
-
-            /*
-             * Volume icon
-             */
-            else {
+            } else {
 
                 musicToggle.innerHTML = `
                     <svg

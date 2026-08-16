@@ -23,7 +23,7 @@
 
 
 /* ==================================================
-   GLOBAL FONT
+   GLOBAL
 ================================================== */
 
 html,
@@ -45,13 +45,21 @@ div {
 }
 
 
+html,
+body {
+    width: 100%;
+    min-height: 100%;
+}
+
+
 body {
     min-height: 100vh;
 
     color: var(--text);
+
     background: #FFF7FA;
 
-    overflow: hidden;
+    overflow-x: hidden;
 }
 
 
@@ -69,7 +77,6 @@ button {
 
 /* ==================================================
    PAGE 1 — DOOR
-   โครงเดิม ไม่เปลี่ยน layout
 ================================================== */
 
 .center,
@@ -79,7 +86,8 @@ button {
     justify-content: center;
     align-items: center;
 
-    height: 100vh;
+    min-height: 100vh;
+    min-height: 100dvh;
 }
 
 
@@ -92,6 +100,7 @@ button {
     font-weight: 500;
 
     line-height: 1.25;
+
     text-align: center;
 }
 
@@ -121,21 +130,29 @@ button {
             #EEAFC6
         );
 
-    border-radius: 110px 110px 18px 18px;
+    border-radius:
+        110px 110px 18px 18px;
 
     cursor: pointer;
 
-    transition: transform 1s ease;
+    transition:
+        transform 1s ease;
 
     box-shadow:
-        inset 0 0 0 4px rgba(255, 255, 255, 0.35),
-        0 10px 30px rgba(0, 0, 0, 0.1);
+        inset 0 0 0 4px
+        rgba(255, 255, 255, 0.35),
+
+        0 10px 30px
+        rgba(0, 0, 0, 0.1);
 }
 
 
 #door.open {
-    transform: rotateY(-75deg);
-    transform-origin: left center;
+    transform:
+        rotateY(-75deg);
+
+    transform-origin:
+        left center;
 }
 
 
@@ -152,7 +169,8 @@ button {
 
     border-radius: 35px;
 
-    transform: translateX(-50%);
+    transform:
+        translateX(-50%);
 }
 
 
@@ -164,7 +182,8 @@ button {
 
     height: 2px;
 
-    background: rgba(255, 255, 255, 0.25);
+    background:
+        rgba(255, 255, 255, 0.25);
 }
 
 
@@ -197,9 +216,14 @@ button {
     border-radius: 50%;
 
     box-shadow:
-        0 0 12px rgba(255, 255, 255, 0.9);
+        0 0 12px
+        rgba(255, 255, 255, 0.9);
 }
 
+
+/* ==================================================
+   DOOR SHAKE
+================================================== */
 
 @keyframes knockShake {
 
@@ -226,11 +250,15 @@ button {
     100% {
         transform: translateX(0);
     }
+
 }
 
 
 #door.knock {
-    animation: knockShake 0.35s ease;
+    animation:
+        knockShake
+        0.35s
+        ease;
 }
 
 
@@ -241,6 +269,8 @@ button {
 
     font-size: 18px;
     font-weight: 300;
+
+    text-align: center;
 }
 
 
@@ -254,7 +284,10 @@ button {
 
 
 .card {
-    width: min(760px, 92vw);
+    width: min(
+        760px,
+        calc(100vw - 32px)
+    );
 
     padding: 30px;
 
@@ -263,7 +296,8 @@ button {
     border-radius: 35px;
 
     box-shadow:
-        0 10px 35px rgba(0, 0, 0, 0.08);
+        0 10px 35px
+        rgba(0, 0, 0, 0.08);
 
     text-align: center;
 }
@@ -273,7 +307,7 @@ button {
     display: block;
 
     width: 320px;
-    max-width: 85vw;
+    max-width: 100%;
 
     margin: 0 auto;
 
@@ -281,32 +315,40 @@ button {
 
     filter:
         drop-shadow(
-            0 10px 25px rgba(232, 154, 184, 0.35)
+            0 10px 25px
+            rgba(232, 154, 184, 0.35)
         );
 
     animation:
-        floatImage 3s ease-in-out infinite;
+        floatImage
+        3s
+        ease-in-out
+        infinite;
 }
 
 
 @keyframes floatImage {
 
     0% {
-        transform: translateY(0);
+        transform:
+            translateY(0);
     }
 
     50% {
-        transform: translateY(-10px);
+        transform:
+            translateY(-10px);
     }
 
     100% {
-        transform: translateY(0);
+        transform:
+            translateY(0);
     }
+
 }
 
 
 /* ==================================================
-   TYPING MESSAGE
+   TYPING
 ================================================== */
 
 .question {
@@ -317,6 +359,7 @@ button {
 
     display: flex;
     flex-direction: column;
+
     justify-content: center;
     align-items: center;
 
@@ -353,7 +396,10 @@ button {
     background: currentColor;
 
     animation:
-        cursorBlink 0.75s steps(1) infinite;
+        cursorBlink
+        0.75s
+        steps(1)
+        infinite;
 }
 
 
@@ -362,6 +408,7 @@ button {
     50% {
         opacity: 0;
     }
+
 }
 
 
@@ -376,6 +423,7 @@ button {
 
     display: flex;
     flex-direction: column;
+
     align-items: center;
 
     gap: 10px;
@@ -385,7 +433,8 @@ button {
 .buttons-hidden {
     opacity: 0;
 
-    transform: translateY(8px);
+    transform:
+        translateY(8px);
 
     pointer-events: none;
 
@@ -398,7 +447,8 @@ button {
 .buttons-show {
     opacity: 1;
 
-    transform: translateY(0);
+    transform:
+        translateY(0);
 
     pointer-events: auto;
 }
@@ -419,10 +469,12 @@ button {
 #yesBtn {
     color: white;
 
-    background: var(--pink);
+    background:
+        var(--pink);
 
     box-shadow:
-        0 8px 20px rgba(232, 154, 184, 0.25);
+        0 8px 20px
+        rgba(232, 154, 184, 0.25);
 
     transition:
         transform 0.2s ease,
@@ -431,36 +483,34 @@ button {
 
 
 #yesBtn:hover {
-    transform: translateY(-1px);
+    transform:
+        translateY(-1px);
+
     box-shadow:
-        0 10px 24px rgba(232, 154, 184, 0.30);
+        0 10px 24px
+        rgba(232, 154, 184, 0.30);
 }
 
-
-/*
- * ปุ่มไม่อยากฟัง:
- * ตอนแรกเป็นปุ่มธรรมดาใน flow
- * พอกดครั้งแรก JS จะใส่ .is-running
- * แล้วล็อกตำแหน่งเดิมก่อนจึงค่อยเลื่อน
- */
 
 #noBtn {
     position: relative;
 
     color: var(--pink);
+
     background: #FFFFFF;
 
-    border: 2px solid var(--pink);
+    border:
+        2px solid var(--pink);
+
     border-radius: 999px;
 
-    /*
-     * ปุ่มจะวิ่งด้วย transform
-     * ไม่เปลี่ยน position
-     * จึงไม่หายหรือกระโดด
-     */
     transition:
-        transform 0.65s cubic-bezier(.22, 1, .36, 1),
-        box-shadow 0.2s ease;
+        transform
+        0.65s
+        cubic-bezier(.22, 1, .36, 1),
+
+        box-shadow
+        0.2s ease;
 
     will-change: transform;
 }
@@ -468,7 +518,8 @@ button {
 
 #noBtn:hover {
     box-shadow:
-        0 6px 18px rgba(232, 154, 184, 0.15);
+        0 6px 18px
+        rgba(232, 154, 184, 0.15);
 }
 
 
@@ -476,24 +527,21 @@ button {
     position: relative;
 
     z-index: 1000;
-
-    /*
-     * ไม่ต้องใส่ left
-     * ไม่ต้องใส่ top
-     * ไม่ต้องใช้ fixed
-     */
 }
 
+
 /* ==================================================
-   PAGE 3 — MUSIC WIDGET
-   OPTION 2
+   PAGE 3 — MUSIC
 ================================================== */
 
 #musicPage {
     width: 100%;
+
     min-height: 100vh;
+    min-height: 100dvh;
 
     display: flex;
+
     align-items: center;
     justify-content: center;
 
@@ -502,10 +550,16 @@ button {
 
 
 .music-widget {
-    width: min(900px, 94vw);
+    width: min(
+        900px,
+        calc(100vw - 40px)
+    );
 
     display: grid;
-    grid-template-columns: 190px minmax(0, 1fr);
+
+    grid-template-columns:
+        190px
+        minmax(0, 1fr);
 
     gap: 28px;
 
@@ -513,12 +567,15 @@ button {
 
     background: white;
 
-    border: 1px solid var(--pink-border);
+    border:
+        1px solid
+        var(--pink-border);
 
     border-radius: 28px;
 
     box-shadow:
-        0 20px 55px rgba(192, 127, 153, 0.13);
+        0 20px 55px
+        rgba(192, 127, 153, 0.13);
 }
 
 
@@ -531,7 +588,8 @@ button {
     border-radius: 21px;
 
     box-shadow:
-        0 12px 28px rgba(50, 35, 40, 0.12);
+        0 12px 28px
+        rgba(50, 35, 40, 0.12);
 }
 
 
@@ -550,12 +608,14 @@ button {
 
     display: flex;
     flex-direction: column;
+
     justify-content: center;
 }
 
 
 .music-header {
     display: flex;
+
     justify-content: space-between;
     align-items: flex-start;
 
@@ -604,6 +664,7 @@ button {
     height: 36px;
 
     display: flex;
+
     align-items: center;
     justify-content: center;
 
@@ -627,9 +688,6 @@ button {
 }
 
 
-/*
- * ขนาดไอคอนทุกปุ่มเท่ากัน
- */
 .icon-button svg {
     width: 20px;
     height: 20px;
@@ -638,7 +696,8 @@ button {
 
     fill: none;
 
-    stroke: currentColor;
+    stroke:
+        currentColor;
 
     stroke-width: 1.75;
 
@@ -666,7 +725,7 @@ button {
 
 
 /* ==================================================
-   PROGRESS
+   PROGRESS BAR
 ================================================== */
 
 .progress-area {
@@ -681,6 +740,7 @@ button {
     height: 5px;
 
     appearance: none;
+    -webkit-appearance: none;
 
     background: #EADFE4;
 
@@ -690,19 +750,79 @@ button {
 }
 
 
+/*
+   Chrome / Edge / Safari
+*/
+
+#progressBar::-webkit-slider-runnable-track {
+    width: 100%;
+    height: 5px;
+
+    background:
+        linear-gradient(
+            to right,
+
+            var(--pink)
+            0%,
+
+            var(--pink)
+            var(--progress, 0%),
+
+            #EADFE4
+            var(--progress, 0%),
+
+            #EADFE4
+            100%
+        );
+
+    border-radius: 999px;
+}
+
+
 #progressBar::-webkit-slider-thumb {
     appearance: none;
+    -webkit-appearance: none;
 
     width: 14px;
     height: 14px;
 
+    margin-top: -4.5px;
+
     border: none;
+
     border-radius: 50%;
 
-    background: var(--pink);
+    background:
+        var(--pink);
 
     box-shadow:
-        0 3px 9px rgba(230, 149, 182, 0.35);
+        0 3px 9px
+        rgba(230, 149, 182, 0.35);
+}
+
+
+/*
+   Firefox
+*/
+
+#progressBar::-moz-range-track {
+    width: 100%;
+    height: 5px;
+
+    background:
+        #EADFE4;
+
+    border-radius: 999px;
+}
+
+
+#progressBar::-moz-range-progress {
+    height: 5px;
+
+    background:
+        var(--pink);
+
+    border-radius: 999px;
 }
 
 
@@ -711,14 +831,17 @@ button {
     height: 14px;
 
     border: none;
+
     border-radius: 50%;
 
-    background: var(--pink);
+    background:
+        var(--pink);
 }
 
 
 .time-row {
     display: flex;
+
     justify-content: space-between;
 
     margin-top: 7px;
@@ -736,6 +859,7 @@ button {
 
 .player-controls {
     display: flex;
+
     justify-content: center;
     align-items: center;
 
@@ -753,25 +877,26 @@ button {
 }
 
 
-
-
 .play-control {
     width: 60px;
     height: 60px;
 
     display: grid;
+
     place-items: center;
 
     padding: 0;
 
     color: white;
 
-    background: var(--pink);
+    background:
+        var(--pink);
 
     border-radius: 50%;
 
     box-shadow:
-        0 10px 24px rgba(230, 149, 182, 0.34);
+        0 10px 24px
+        rgba(230, 149, 182, 0.34);
 
     cursor: pointer;
 
@@ -782,10 +907,12 @@ button {
 
 
 .play-control:hover {
-    transform: scale(1.045);
+    transform:
+        scale(1.045);
 
     box-shadow:
-        0 12px 28px rgba(230, 149, 182, 0.40);
+        0 12px 28px
+        rgba(230, 149, 182, 0.40);
 }
 
 
@@ -793,7 +920,8 @@ button {
     width: 25px;
     height: 25px;
 
-    fill: currentColor;
+    fill:
+        currentColor;
 }
 
 
@@ -803,16 +931,19 @@ button {
 
 .music-note {
     margin-top: 17px;
+
     padding: 11px 14px;
 
     display: flex;
+
     align-items: center;
 
     gap: 10px;
 
     color: #80636E;
 
-    background: var(--pink-soft);
+    background:
+        var(--pink-soft);
 
     border-radius: 13px;
 }
@@ -826,7 +957,8 @@ button {
 
     fill: none;
 
-    stroke: var(--pink);
+    stroke:
+        var(--pink);
 
     stroke-width: 1.7;
 
@@ -844,7 +976,7 @@ button {
 
 
 /* ==================================================
-   VOLUME BUTTON
+   VOLUME
 ================================================== */
 
 .music-toggle {
@@ -859,18 +991,21 @@ button {
     height: 46px;
 
     display: grid;
+
     place-items: center;
 
     padding: 10px;
 
     color: var(--text);
 
-    background: rgba(255, 255, 255, 0.92);
+    background:
+        rgba(255, 255, 255, 0.92);
 
     border-radius: 50%;
 
     box-shadow:
-        0 8px 24px rgba(110, 70, 85, 0.08);
+        0 8px 24px
+        rgba(110, 70, 85, 0.08);
 
     cursor: pointer;
 
@@ -881,7 +1016,8 @@ button {
 
 
 .music-toggle:hover {
-    transform: scale(1.04);
+    transform:
+        scale(1.04);
 }
 
 
@@ -891,7 +1027,9 @@ button {
 
     fill: none;
 
-    stroke: currentColor;
+    stroke:
+        currentColor;
+
     stroke-width: 1.7;
 
     stroke-linecap: round;
@@ -905,48 +1043,163 @@ button {
 
 @media (max-width: 720px) {
 
+    .center,
+    #mainContent {
+        min-height: 100dvh;
+
+        padding:
+            24px 16px;
+    }
+
+
     .title {
-        font-size: 36px;
+        margin-bottom: 28px;
+
+        font-size:
+            clamp(
+                28px,
+                8vw,
+                36px
+            );
+    }
+
+
+    .door-frame {
+        padding: 14px;
+
+        border-radius: 32px;
+    }
+
+
+    #door {
+        width: 170px;
+        height: 265px;
+    }
+
+
+    .door-window {
+        top: 38px;
+
+        width: 64px;
+        height: 82px;
+    }
+
+
+    .line1 {
+        top: 133px;
+    }
+
+
+    .line2 {
+        top: 164px;
+    }
+
+
+    .line3 {
+        top: 195px;
+    }
+
+
+    .knob {
+        top: 142px;
+
+        right: 19px;
+
+        width: 16px;
+        height: 16px;
     }
 
 
     .hint {
-        font-size: 16px;
+        max-width: 90vw;
+
+        margin-top: 24px;
+
+        font-size: 15px;
+    }
+
+
+    #mainContent {
+        overflow-y: auto;
+
+        justify-content:
+            flex-start;
+
+        padding:
+            24px 16px;
     }
 
 
     .card {
-        padding: 24px 18px 28px;
+        width: 100%;
+
+        padding:
+            22px 16px 26px;
+
+        border-radius: 26px;
     }
 
 
     .beg-image {
-        width: min(300px, 78vw);
+        width:
+            min(
+                300px,
+                78vw
+            );
     }
 
 
     .question {
         min-height: 225px;
 
-        font-size: 22px;
+        font-size:
+            clamp(
+                19px,
+                5.5vw,
+                22px
+            );
 
         line-height: 1.6;
     }
 
 
+    .typed-line {
+        max-width: 100%;
+
+        white-space: normal;
+    }
+
+
     .buttons button {
-        width: 215px;
+        width:
+            min(
+                215px,
+                80vw
+            );
 
         font-size: 16px;
     }
 
 
+    #musicPage {
+        min-height: 100dvh;
+
+        padding:
+            18px 12px;
+    }
+
+
     .music-widget {
-        grid-template-columns: 1fr;
+        width: 100%;
+
+        grid-template-columns:
+            1fr;
 
         gap: 20px;
 
         padding: 20px;
+
+        border-radius: 24px;
     }
 
 
@@ -954,12 +1207,23 @@ button {
         width: 150px;
         height: 150px;
 
-        margin: 0 auto;
+        margin:
+            0 auto;
     }
 
 
     .music-title {
         font-size: 27px;
+    }
+
+
+    .music-header {
+        gap: 10px;
+    }
+
+
+    .music-artist {
+        font-size: 16px;
     }
 
 
@@ -974,6 +1238,11 @@ button {
     }
 
 
+    .music-note {
+        font-size: 13px;
+    }
+
+
     .music-toggle {
         top: 14px;
         right: 14px;
@@ -984,9 +1253,50 @@ button {
 
 }
 
+
 /* ==================================================
-   OPENING HEART + FLOWER BURST
-   เอฟเฟกต์เฉพาะตอนเปิดรูป
+   VERY SMALL MOBILE
+================================================== */
+
+@media (max-width: 380px) {
+
+    .music-widget {
+        padding: 16px;
+    }
+
+
+    .music-cover {
+        width: 130px;
+        height: 130px;
+    }
+
+
+    .music-title {
+        font-size: 24px;
+    }
+
+
+    .player-controls {
+        gap: 2px;
+    }
+
+
+    .control {
+        width: 31px;
+        height: 31px;
+    }
+
+
+    .play-control {
+        width: 52px;
+        height: 52px;
+    }
+
+}
+
+
+/* ==================================================
+   HEART + FLOWER BURST
 ================================================== */
 
 #celebration {
@@ -1002,9 +1312,6 @@ button {
 }
 
 
-/*
- * Particle แต่ละตัว
- */
 .heart-burst {
     position: fixed;
 
@@ -1042,9 +1349,6 @@ button {
 }
 
 
-/*
- * เอฟเฟกต์พุ่งออกจากรูป
- */
 @keyframes heartFlowerBurst {
 
     0% {
@@ -1055,6 +1359,7 @@ button {
             translate(-50%, -50%)
             scale(0.25)
             rotate(0deg);
+
     }
 
 
@@ -1066,13 +1371,12 @@ button {
             translate(-50%, -50%)
             scale(0.8)
             rotate(0deg);
+
     }
 
 
     65% {
-
         opacity: 1;
-
     }
 
 
@@ -1087,6 +1391,7 @@ button {
             )
             scale(1)
             rotate(var(--rotate));
+
     }
 
 }
