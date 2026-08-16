@@ -1,6 +1,6 @@
 /* ==================================================
    KNOCK KNOCK
-   MAIN SCRIPT
+   CLEAN / RESPONSIVE VERSION
 ================================================== */
 
 
@@ -56,12 +56,6 @@ const playBtn =
 const playIcon =
     document.getElementById("playIcon");
 
-const backBtn =
-    document.getElementById("backBtn");
-
-const forwardBtn =
-    document.getElementById("forwardBtn");
-
 const prevBtn =
     document.getElementById("prevBtn");
 
@@ -91,9 +85,7 @@ let doorOpening = false;
 
 let typingStarted = false;
 
-let noButtonX = 0;
-
-let noButtonY = 0;
+let noButtonMoved = false;
 
 
 /* ==================================================
@@ -110,21 +102,19 @@ const messageText = [
 
 
 /* ==================================================
-   HELPER
+   HELPERS
 ================================================== */
 
 function wait(ms) {
 
-    return new Promise(
-        (resolve) => {
+    return new Promise((resolve) => {
 
-            window.setTimeout(
-                resolve,
-                ms
-            );
+        window.setTimeout(
+            resolve,
+            ms
+        );
 
-        }
-    );
+    });
 
 }
 
@@ -142,15 +132,11 @@ function formatTime(seconds) {
 
 
     const minutes =
-        Math.floor(
-            seconds / 60
-        );
+        Math.floor(seconds / 60);
 
 
     const secondsPart =
-        Math.floor(
-            seconds % 60
-        )
+        Math.floor(seconds % 60)
         .toString()
         .padStart(2, "0");
 
@@ -180,7 +166,9 @@ function playHeartBurst() {
 
 
     const image =
-        mainContent.querySelector("img");
+        mainContent.querySelector(
+            ".beg-image"
+        );
 
 
     let originX =
@@ -210,101 +198,18 @@ function playHeartBurst() {
 
     const effects = [
 
-        {
-            emoji: "💗",
-            x: -115,
-            y: -90,
-            size: 20,
-            rotate: -18
-        },
-
-        {
-            emoji: "😼",
-            x: -155,
-            y: -25,
-            size: 22,
-            rotate: -25
-        },
-
-        {
-            emoji: "✨",
-            x: -95,
-            y: -145,
-            size: 18,
-            rotate: 15
-        },
-
-        {
-            emoji: "💕",
-            x: 105,
-            y: -105,
-            size: 21,
-            rotate: 18
-        },
-
-        {
-            emoji: "🌸",
-            x: 150,
-            y: -30,
-            size: 21,
-            rotate: 25
-        },
-
-        {
-            emoji: "✦",
-            x: 100,
-            y: -150,
-            size: 17,
-            rotate: -15
-        },
-
-        {
-            emoji: "💖",
-            x: 145,
-            y: 65,
-            size: 20,
-            rotate: 20
-        },
-
-        {
-            emoji: "🌷",
-            x: 85,
-            y: 125,
-            size: 21,
-            rotate: 15
-        },
-
-        {
-            emoji: "♡",
-            x: -95,
-            y: 125,
-            size: 20,
-            rotate: -15
-        },
-
-        {
-            emoji: "🌸",
-            x: -150,
-            y: 65,
-            size: 21,
-            rotate: -25
-        },
-
-        {
-            emoji: "✨",
-            x: -55,
-            y: 145,
-            size: 17,
-            rotate: 20
-        },
-
-        {
-            emoji: "💗",
-            x: 50,
-            y: 145,
-            size: 19,
-            rotate: -18
-        }
+        [-115, -90, 20, "💗", -18],
+        [-155, -25, 22, "😼", -25],
+        [-95, -145, 18, "✨", 15],
+        [105, -105, 21, "💕", 18],
+        [150, -30, 21, "🌸", 25],
+        [100, -150, 17, "✦", -15],
+        [145, 65, 20, "💖", 20],
+        [85, 125, 21, "🌷", 15],
+        [-95, 125, 20, "♡", -15],
+        [-150, 65, 21, "🌸", -25],
+        [-55, 145, 17, "✨", 20],
+        [50, 145, 19, "💗", -18]
 
     ];
 
@@ -323,7 +228,7 @@ function playHeartBurst() {
 
 
             particle.textContent =
-                effect.emoji;
+                effect[3];
 
 
             particle.style.left =
@@ -335,24 +240,24 @@ function playHeartBurst() {
 
 
             particle.style.fontSize =
-                `${effect.size}px`;
+                `${effect[2]}px`;
 
 
             particle.style.setProperty(
                 "--x",
-                `${effect.x}px`
+                `${effect[0]}px`
             );
 
 
             particle.style.setProperty(
                 "--y",
-                `${effect.y}px`
+                `${effect[1]}px`
             );
 
 
             particle.style.setProperty(
                 "--rotate",
-                `${effect.rotate}deg`
+                `${effect[4]}deg`
             );
 
 
@@ -368,7 +273,7 @@ function playHeartBurst() {
     );
 
 
-    setTimeout(
+    window.setTimeout(
         () => {
 
             celebration.innerHTML = "";
@@ -390,9 +295,7 @@ async function typeOneLine(
 ) {
 
     if (!element) {
-
         return;
-
     }
 
 
@@ -424,7 +327,7 @@ async function typeOneLine(
         );
 
 
-        await wait(68);
+        await wait(55);
 
     }
 
@@ -437,16 +340,14 @@ async function typeOneLine(
 async function startTyping() {
 
     if (typingStarted) {
-
         return;
-
     }
 
 
     typingStarted = true;
 
 
-    await wait(700);
+    await wait(600);
 
 
     for (
@@ -466,14 +367,14 @@ async function startTyping() {
             messageText.length - 1
         ) {
 
-            await wait(220);
+            await wait(160);
 
         }
 
     }
 
 
-    await wait(500);
+    await wait(350);
 
 
     if (messageButtons) {
@@ -494,18 +395,13 @@ async function startTyping() {
 function startHomeMusic() {
 
     if (!bgMusic) {
-
         return;
-
     }
 
 
-    bgMusic.volume =
-        0.5;
+    bgMusic.volume = 0.5;
 
-
-    bgMusic.loop =
-        true;
+    bgMusic.loop = true;
 
 
     const promise =
@@ -534,9 +430,7 @@ if (door) {
         async () => {
 
             if (doorOpening) {
-
                 return;
-
             }
 
 
@@ -557,14 +451,11 @@ if (door) {
 
 
             if (knocks < 2) {
-
                 return;
-
             }
 
 
-            doorOpening =
-                true;
+            doorOpening = true;
 
 
             door.style.pointerEvents =
@@ -576,25 +467,17 @@ if (door) {
             );
 
 
-            await wait(1000);
+            await wait(900);
 
 
-            if (doorScene) {
-
-                doorScene.classList.add(
-                    "hidden"
-                );
-
-            }
+            doorScene?.classList.add(
+                "hidden"
+            );
 
 
-            if (mainContent) {
-
-                mainContent.classList.remove(
-                    "hidden"
-                );
-
-            }
+            mainContent?.classList.remove(
+                "hidden"
+            );
 
 
             playHeartBurst();
@@ -603,7 +486,7 @@ if (door) {
             startHomeMusic();
 
 
-            await wait(950);
+            await wait(800);
 
 
             startTyping();
@@ -616,110 +499,248 @@ if (door) {
 
 /* ==================================================
    NO BUTTON
+   - Desktop: หนีเมื่อเมาส์เข้าใกล้
+   - Mobile: หนีเมื่อแตะ
+   - อยู่ในพื้นที่ .buttons
+   - และไม่ออกนอก viewport
 ================================================== */
-
-const noButtonMoves = [
-
-    {
-        x: -120,
-        y: -65
-    },
-
-    {
-        x: 120,
-        y: -65
-    },
-
-    {
-        x: -135,
-        y: 55
-    },
-
-    {
-        x: 135,
-        y: 55
-    },
-
-    {
-        x: -90,
-        y: 95
-    },
-
-    {
-        x: 90,
-        y: 95
-    },
-
-    {
-        x: -145,
-        y: 0
-    },
-
-    {
-        x: 145,
-        y: 0
-    }
-
-];
-
 
 function moveNoButton() {
 
     if (!noBtn) {
-
         return;
+    }
+
+
+    const area =
+        noBtn.closest(".buttons");
+
+
+    if (!area) {
+        return;
+    }
+
+
+    /*
+     * ก่อนย้ายครั้งแรก:
+     * เปลี่ยนเป็น absolute แต่รักษาตำแหน่งเดิม
+     */
+    if (!noButtonMoved) {
+
+        const areaRect =
+            area.getBoundingClientRect();
+
+        const buttonRect =
+            noBtn.getBoundingClientRect();
+
+
+        const startLeft =
+            buttonRect.left -
+            areaRect.left +
+            area.scrollLeft;
+
+
+        const startTop =
+            buttonRect.top -
+            areaRect.top +
+            area.scrollTop;
+
+
+        noBtn.classList.add(
+            "is-running"
+        );
+
+
+        noBtn.style.left =
+            `${startLeft}px`;
+
+
+        noBtn.style.top =
+            `${startTop}px`;
+
+
+        noButtonMoved = true;
 
     }
 
 
-    let move;
+    /*
+     * ให้ browser วาง absolute ก่อน
+     */
+    requestAnimationFrame(
+        () => {
+
+            const areaRect =
+                area.getBoundingClientRect();
+
+            const buttonRect =
+                noBtn.getBoundingClientRect();
 
 
-    do {
+            const padding = 8;
 
-        move =
-            noButtonMoves[
-                Math.floor(
-                    Math.random() *
-                    noButtonMoves.length
-                )
-            ];
 
-    } while (
-        move.x === noButtonX &&
-        move.y === noButtonY
+            /*
+             * พื้นที่ใน .buttons
+             */
+            let minLeft =
+                padding;
+
+            let maxLeft =
+                areaRect.width -
+                buttonRect.width -
+                padding;
+
+
+            let minTop =
+                padding;
+
+            let maxTop =
+                areaRect.height -
+                buttonRect.height -
+                padding;
+
+
+            /*
+             * จำกัดด้วยขอบจอด้วย
+             * กันไม่ให้ปุ่มหายไปจากจอ
+             */
+
+            const viewportMinLeft =
+                padding -
+                areaRect.left;
+
+            const viewportMaxLeft =
+                window.innerWidth -
+                padding -
+                buttonRect.width -
+                areaRect.left;
+
+
+            const viewportMinTop =
+                padding -
+                areaRect.top;
+
+            const viewportMaxTop =
+                window.innerHeight -
+                padding -
+                buttonRect.height -
+                areaRect.top;
+
+
+            minLeft =
+                Math.max(
+                    minLeft,
+                    viewportMinLeft
+                );
+
+
+            maxLeft =
+                Math.min(
+                    maxLeft,
+                    viewportMaxLeft
+                );
+
+
+            minTop =
+                Math.max(
+                    minTop,
+                    viewportMinTop
+                );
+
+
+            maxTop =
+                Math.min(
+                    maxTop,
+                    viewportMaxTop
+                );
+
+
+            /*
+             * ถ้าพื้นที่แคบมาก
+             * ให้ใช้จุดกึ่งกลางแทน
+             */
+            if (maxLeft < minLeft) {
+
+                minLeft =
+                    maxLeft =
+                    Math.max(
+                        0,
+                        (
+                            areaRect.width -
+                            buttonRect.width
+                        ) / 2
+                    );
+
+            }
+
+
+            if (maxTop < minTop) {
+
+                minTop =
+                    maxTop =
+                    Math.max(
+                        0,
+                        (
+                            areaRect.height -
+                            buttonRect.height
+                        ) / 2
+                    );
+
+            }
+
+
+            /*
+             * สุ่มตำแหน่งใหม่
+             */
+            const left =
+                minLeft +
+                Math.random() *
+                Math.max(
+                    0,
+                    maxLeft - minLeft
+                );
+
+
+            const top =
+                minTop +
+                Math.random() *
+                Math.max(
+                    0,
+                    maxTop - minTop
+                );
+
+
+            noBtn.style.left =
+                `${left}px`;
+
+
+            noBtn.style.top =
+                `${top}px`;
+
+        }
     );
-
-
-    noButtonX =
-        move.x;
-
-
-    noButtonY =
-        move.y;
-
-
-    noBtn.classList.add(
-        "is-running"
-    );
-
-
-    noBtn.style.transform =
-        `translate(
-            ${noButtonX}px,
-            ${noButtonY}px
-        )`;
 
 }
 
 
+/*
+ * Desktop
+ */
 if (noBtn) {
 
     noBtn.addEventListener(
-        "click",
+        "mouseenter",
         (event) => {
 
-            event.preventDefault();
+            if (
+                event.pointerType === "touch"
+            ) {
+
+                return;
+
+            }
+
 
             moveNoButton();
 
@@ -727,17 +748,17 @@ if (noBtn) {
     );
 
 
+    /*
+     * Mobile + Desktop touch
+     */
     noBtn.addEventListener(
-        "touchstart",
+        "pointerdown",
         (event) => {
 
             event.preventDefault();
 
             moveNoButton();
 
-        },
-        {
-            passive: false
         }
     );
 
@@ -755,28 +776,18 @@ if (yesBtn) {
         () => {
 
             if (bgMusic) {
-
                 bgMusic.pause();
-
             }
 
 
-            if (mainContent) {
-
-                mainContent.classList.add(
-                    "hidden"
-                );
-
-            }
+            mainContent?.classList.add(
+                "hidden"
+            );
 
 
-            if (musicPage) {
-
-                musicPage.classList.remove(
-                    "hidden"
-                );
-
-            }
+            musicPage?.classList.remove(
+                "hidden"
+            );
 
 
             if (attachedMusic) {
@@ -784,10 +795,8 @@ if (yesBtn) {
                 attachedMusic.currentTime =
                     0;
 
-
                 attachedMusic.volume =
                     0.55;
-
 
                 attachedMusic.loop =
                     false;
@@ -832,9 +841,7 @@ function updatePlayIcon() {
     }
 
 
-    if (
-        attachedMusic.paused
-    ) {
+    if (attachedMusic.paused) {
 
         playIcon.innerHTML = `
             <path d="M8 5v14l11-7Z"></path>
@@ -859,9 +866,7 @@ if (playBtn) {
         () => {
 
             if (!attachedMusic) {
-
                 return;
-
             }
 
 
@@ -900,9 +905,7 @@ if (playBtn) {
 function updateMusicUI() {
 
     if (!attachedMusic) {
-
         return;
-
     }
 
 
@@ -925,11 +928,6 @@ function updateMusicUI() {
 
     }
 
-
-    /*
-       Progress
-       0 - 100
-    */
 
     if (
         progressBar &&
@@ -1039,73 +1037,7 @@ if (progressBar) {
 
 
 /* ==================================================
-   BACK 10 SECONDS
-================================================== */
-
-if (backBtn) {
-
-    backBtn.addEventListener(
-        "click",
-        () => {
-
-            if (!attachedMusic) {
-
-                return;
-
-            }
-
-
-            attachedMusic.currentTime =
-                Math.max(
-                    0,
-                    attachedMusic.currentTime - 10
-                );
-
-        }
-    );
-
-}
-
-
-/* ==================================================
-   FORWARD 10 SECONDS
-================================================== */
-
-if (forwardBtn) {
-
-    forwardBtn.addEventListener(
-        "click",
-        () => {
-
-            if (!attachedMusic) {
-
-                return;
-
-            }
-
-
-            const maxTime =
-                Number.isFinite(
-                    attachedMusic.duration
-                )
-                    ? attachedMusic.duration
-                    : attachedMusic.currentTime + 10;
-
-
-            attachedMusic.currentTime =
-                Math.min(
-                    maxTime,
-                    attachedMusic.currentTime + 10
-                );
-
-        }
-    );
-
-}
-
-
-/* ==================================================
-   PREVIOUS
+   PREVIOUS / NEXT
 ================================================== */
 
 if (prevBtn) {
@@ -1115,24 +1047,16 @@ if (prevBtn) {
         () => {
 
             if (!attachedMusic) {
-
                 return;
-
             }
 
-
-            attachedMusic.currentTime =
-                0;
+            attachedMusic.currentTime = 0;
 
         }
     );
 
 }
 
-
-/* ==================================================
-   NEXT
-================================================== */
 
 if (nextBtn) {
 
@@ -1141,11 +1065,8 @@ if (nextBtn) {
         () => {
 
             if (!attachedMusic) {
-
                 return;
-
             }
-
 
             if (
                 Number.isFinite(
@@ -1175,9 +1096,7 @@ if (repeatBtn) {
         () => {
 
             if (!attachedMusic) {
-
                 return;
-
             }
 
 
